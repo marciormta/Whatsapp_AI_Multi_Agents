@@ -35,14 +35,16 @@ jobs:
         uses: azure/container-apps-deploy-action@v2
         with:
           appSourcePath: ${{ github.workspace }}
-          _dockerfilePathKey_: _dockerfilePath_
+          dockerfilePath: Dockerfile
           registryUrl: aiwhats.azurecr.io
           registryUsername: ${{ secrets.AICONTAINER_REGISTRY_USERNAME }}
           registryPassword: ${{ secrets.AICONTAINER_REGISTRY_PASSWORD }}
           containerAppName: aicontainer
           resourceGroup: AI-Service-Whats
           imageToBuild: aiwhats.azurecr.io/aicontainer:${{ github.sha }}
-          _buildArgumentsKey_: |
-            _buildArgumentsValues_
+          #_buildArgumentsKey_: |
+           # _buildArgumentsValues_
+          envVars: |
+            VERIFY_TOKEN=${{ secrets.AICONTAINER_VERIFY_TOKEN }}
 
 
