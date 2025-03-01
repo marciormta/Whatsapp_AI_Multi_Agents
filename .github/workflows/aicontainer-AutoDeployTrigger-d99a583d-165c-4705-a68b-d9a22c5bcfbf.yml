@@ -45,6 +45,6 @@ jobs:
           #_buildArgumentsKey_: |
            # _buildArgumentsValues_
           envVars: |
-            VERIFY_TOKEN=${{ secrets.AICONTAINER_VERIFY_TOKEN }}
+            token=${{ secrets.AICONTAINER_VERIFY_TOKEN }}
 
 

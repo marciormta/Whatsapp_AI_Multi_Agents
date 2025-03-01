@@ -5,8 +5,7 @@ import uvicorn
 app = FastAPI()
 
 import os
-VERIFY_TOKEN = os.getenv("VERIFY_TOKEN")
-
+token = os.getenv("token")
 
 @app.get("/webhook")
 async def verify_token(
@@ -19,7 +18,7 @@ async def verify_token(
     Se os parâmetros estiverem corretos, retorna o hub.challenge.
     """
     if hub_mode and hub_verify_token:
-        if hub_mode == "subscribe" and hub_verify_token == VERIFY_TOKEN:
+        if hub_mode == "subscribe" and hub_verify_token == token:
             print("[INFO] Webhook verificado com sucesso!")
             return PlainTextResponse(content=hub_challenge, status_code=200)
         else:
