@@ -5,7 +5,7 @@ import uvicorn
 app = FastAPI()
 
 import os
-VERIFY_TOKEN = os.getenv("VERIFY_TOKEN")
+VERIFY_TOKEN = os.getenv("VERIFY_TOKEN", "veri45")
 
 @app.get("/webhook")
 async def verify_token(
