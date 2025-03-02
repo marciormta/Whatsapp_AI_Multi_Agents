@@ -35,4 +35,5 @@ COPY . .
 EXPOSE 8000
 
 # Inicia a aplicação com gunicorn utilizando o worker do uvicorn
-CMD gunicorn Webhook:app --bind 0.0.0.0:8000 --worker-class uvicorn.workers.UvicornWorker
+# CMD gunicorn Webhook:app --bind 0.0.0.0:8000 --worker-class uvicorn.workers.UvicornWorker
+CMD streamlit run app_streamlit.py --server.port=8000 --server.address=0.0.0.0
