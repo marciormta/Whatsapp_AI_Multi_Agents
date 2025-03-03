@@ -2,4 +2,11 @@ fastapi
 uvicorn
 requests
 gunicorn
-streamlit
+sqlalchemy
+azure-storage-blob
+pyodbc
+langchain
+openai
+python-dotenv
+langchain-community
+langchain-openai

@@ -10,3 +10,6 @@ wheels/
 .venv
 
 .env
+
+.dockerignore
+README.Docker.md

@@ -1,24 +1,19 @@
 name: Trigger auto deployment for aicontainer
 
-# When this action will be executed
 on:
-  # Automatically trigger it when detected changes in repo
   push:
-    branches: 
-      [ main ]
+    branches: [ main ]
     paths:
-    - '**'
-    - '.github/workflows/aicontainer-AutoDeployTrigger-d99a583d-165c-4705-a68b-d9a22c5bcfbf.yml'
-
-  # Allow manual trigger 
-  workflow_dispatch:      
+      - '**'
+      - '.github/workflows/aicontainer-AutoDeployTrigger-d99a583d-165c-4705-a68b-d9a22c5bcfbf.yml'
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    permissions: 
-      id-token: write #This is required for requesting the OIDC JWT Token
-      contents: read #Required when GH token is used to authenticate with private repo
+    permissions:
+      id-token: write
+      contents: read
 
     steps:
       - name: Checkout to the branch
@@ -42,9 +37,15 @@ jobs:
           containerAppName: aicontainer
           resourceGroup: AI-Service-Whats
           imageToBuild: aiwhats.azurecr.io/aicontainer:${{ github.sha }}
-          #_buildArgumentsKey_: |
-           # _buildArgumentsValues_
           envVars: |
-            token=${{ secrets.AICONTAINER_VERIFY_TOKEN }}
-
-
+            TOKEN=${{ secrets.AICONTAINER_VERIFY_TOKEN }}
+            DATABASE_URL=${{ secrets.DATABASE_URL }}
+            AZURE_STORAGE_CONNECTION_STRING=${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
+            AZURE_CONTAINER_NAME=${{ secrets.AZURE_CONTAINER_NAME }}
+            EMAIL_SENDER=${{ secrets.EMAIL_SENDER }}
+            EMAIL_PASSWORD=${{ secrets.EMAIL_PASSWORD }}
+            SMTP_SERVER=${{ secrets.SMTP_SERVER }}
+            SMTP_PORT=${{ secrets.SMTP_PORT }}
+            OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}
+            WHATSAPP_API_URL=${{ secrets.WHATSAPP_API_URL }}
+            WHATSAPP_ACCESS_TOKEN=${{ secrets.WHATSAPP_ACCESS_TOKEN }}
